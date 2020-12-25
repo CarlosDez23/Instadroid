@@ -3,7 +3,7 @@ import 'package:instadroid/src/models/usuario_model.dart';
 import 'package:instadroid/src/providers/loginauth_provider.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
 import 'package:instadroid/src/widgets/background_image.dart';
-import 'package:instadroid/utils/utils.dart' as utils;
+import 'package:instadroid/src/utils/utils.dart' as utils;
 
 class RegistroPage extends StatefulWidget {
   @override
@@ -55,7 +55,7 @@ class _RegistroPageState extends State<RegistroPage> {
                   ? CircularProgressIndicator(backgroundColor: myTheme.primaryColor)
                   : Container(),
                   SizedBox(height: 150),
-                  _doRegisterButton(),
+                  _doRegisterButton(context),
                   SizedBox(height: 20),
                   _goBackLoginButton(context),
                 ],
@@ -180,7 +180,7 @@ class _RegistroPageState extends State<RegistroPage> {
     );
   }
 
-  Widget _doRegisterButton(){
+  Widget _doRegisterButton(BuildContext context){
     return Container(
       width: 300,
       child: RaisedButton(
@@ -194,7 +194,7 @@ class _RegistroPageState extends State<RegistroPage> {
         elevation: 0.0, 
         color: myTheme.buttonColor,
         textColor: Colors.white,
-        onPressed: () => _submit(),
+        onPressed: () => _submit(context),
       ),
     );
   }
@@ -218,8 +218,9 @@ class _RegistroPageState extends State<RegistroPage> {
     );
   }
 
-  void _submit() async {
+  void _submit(BuildContext context) async {
     final registerProvider = LoginAuthProvider();
+    String registerResult;
     if(!formKey.currentState.validate()){
       return;
     }
@@ -232,9 +233,29 @@ class _RegistroPageState extends State<RegistroPage> {
       _cargando = !_cargando;
     });
     if(registrado){
-      print('Correctamente registrado');
+      registerResult = 'Correctamente registrado';
     }else{
-      print('Ocurrió un problema con el registro');
+      registerResult = 'Ha ocurrido un problema con el registro';
     }
+    _giveFeedback(registerResult,registrado);
+  }
+  
+  void _giveFeedback(String feedback, bool isCorrect){
+    utils.showAlert(
+      context,
+      [
+        FlatButton(
+          child: Text('Ok'),
+          onPressed: () {
+            Navigator.of(context).pop();
+            if(isCorrect){
+              Navigator.pushReplacementNamed(context, 'login');
+            }
+          } 
+        )
+      ], 
+      'Registro', 
+      feedback,
+    );
   }
 }

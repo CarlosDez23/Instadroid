@@ -4,7 +4,7 @@ import 'package:instadroid/src/providers/loginauth_provider.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
 import 'package:instadroid/src/widgets/app_title.dart';
 import 'package:instadroid/src/widgets/background_image.dart';
-import 'package:instadroid/utils/utils.dart' as utils;
+import 'package:instadroid/src/utils/utils.dart' as utils;
 
 class LoginPage extends StatefulWidget {
 

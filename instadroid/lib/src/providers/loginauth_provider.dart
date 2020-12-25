@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:instadroid/src/models/usuario_model.dart';
+import 'package:instadroid/src/providers/user_preferences.dart';
 
 class LoginAuthProvider {
 
@@ -8,6 +9,9 @@ class LoginAuthProvider {
   final String _baseUrl               = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   final String _registerServiceToken  = 'signUp?key=';
   final String _loginServiceToken     = 'signInWithPassword?key=';
+
+  //Preferencias de usuario para guardar el token de firebase
+  final userPreferences = UserPreferences();
 
 
   //Damos de alta un usuario en Firebase
@@ -37,6 +41,9 @@ class LoginAuthProvider {
   Future<bool> _handleResponse(String url, String requestBody) async{
     final resp = await http.post(url, body: requestBody);
     Map<String, dynamic> decodedResponse = json.decode(resp.body);
+    //Guardamos el token en las prefrencias de usuario
+    print('Token ${decodedResponse['idToken']}');
+    userPreferences.token = decodedResponse['idToken'];
     return decodedResponse.containsKey('idToken');
   }
 }

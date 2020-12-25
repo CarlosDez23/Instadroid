@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:instadroid/src/pages/login_page.dart';
 import 'package:instadroid/src/pages/registro_page.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
+import 'package:instadroid/src/providers/user_preferences.dart';
  
-void main() => runApp(MyApp());
+void main() async{
+  //Arrancamos las preferencias de usuario para guardar el token
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new UserPreferences();
+  await prefs.initPrefs();
+  print('Token guardado ${prefs.token}');
+  runApp(MyApp());
+} 
  
 class MyApp extends StatelessWidget {
   @override
