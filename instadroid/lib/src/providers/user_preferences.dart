@@ -24,4 +24,12 @@ class UserPreferences{
   set token(String token){
     _prefs.setString('token', token);
   }
+
+  get idUsuarioLogueado{
+    return _prefs.getString('id') ?? '';
+  }
+
+  set idUsuarioLogueado(String id){
+    _prefs.setString('id', id);
+  }
 }

@@ -10,6 +10,7 @@ class Usuario {
   String nombreUsuario;
   String email;
   String password;
+  String fotoUrl;
   String tokenAuth;
 
   Usuario({
@@ -17,6 +18,7 @@ class Usuario {
     this.nombreUsuario,
     this.email,
     this.password,
+    this.fotoUrl,
     this.tokenAuth,
   });
 
@@ -24,15 +26,12 @@ class Usuario {
     idFire          : json["idFire"],
     nombreUsuario   : json["nombreUsuario"],
     email           : json["email"],
-    password        : json["password"],
-    tokenAuth       : json["tokenAuth"],
+    fotoUrl         : json["fotoUrl"],
   );
 
   Map<String, dynamic> toJson() => {
-    "idFire"          : idFire,
     "nombreUsuario"   : nombreUsuario,
     "email"           : email,
-    "password"        : password,
-    "tokenAuth"       : tokenAuth,
+    "fotoUrl"         : fotoUrl,
   };
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instadroid/src/models/usuario_model.dart';
 import 'package:instadroid/src/providers/loginauth_provider.dart';
+import 'package:instadroid/src/providers/user_provider.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
 import 'package:instadroid/src/widgets/background_image.dart';
 import 'package:instadroid/src/utils/utils.dart' as utils;
@@ -220,6 +221,7 @@ class _RegistroPageState extends State<RegistroPage> {
 
   void _submit(BuildContext context) async {
     final registerProvider = LoginAuthProvider();
+    final userProvider = UserProvider();
     String registerResult;
     if(!formKey.currentState.validate()){
       return;
@@ -229,10 +231,12 @@ class _RegistroPageState extends State<RegistroPage> {
       _cargando = !_cargando;
     });
     bool registrado = await registerProvider.createUserFirebase(user);
+    user.fotoUrl = '';
+    bool guardadoBd = await userProvider.agregarUsuario(user); 
     setState(() {
       _cargando = !_cargando;
     });
-    if(registrado){
+    if(registrado && guardadoBd){
       registerResult = 'Correctamente registrado';
     }else{
       registerResult = 'Ha ocurrido un problema con el registro';
