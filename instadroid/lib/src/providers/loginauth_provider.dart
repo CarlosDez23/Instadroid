@@ -17,7 +17,6 @@ class LoginAuthProvider {
   //Damos de alta un usuario en Firebase
   Future<bool> createUserFirebase(Usuario usuario) async {
     final url = '$_baseUrl$_registerServiceToken$_apiKey';
-    print(url);
     final userData = {
       'email'             : usuario.email,
       'password'          : usuario.password,
@@ -29,7 +28,6 @@ class LoginAuthProvider {
   //Login contrqa firebase
   Future<bool> loginFirebase(Usuario usuario) async {
     final url = '$_baseUrl$_loginServiceToken$_apiKey';
-    print(url);
     final userData = {
       'email'             : usuario.email,
       'password'          : usuario.password,

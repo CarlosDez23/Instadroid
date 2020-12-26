@@ -20,20 +20,4 @@ class UserProvider {
     print('id guardada en prefs: ${prefs.idUsuarioLogueado}');
     return decodedData.containsKey('name'); 
   }
-
-
-
-  //Listamos usuarios
-  // listUsers() async {
-  //   final List<Usuario> usuarios = List();
-  //   final url = '$_rootElementUrl/usuarios.json';
-  //   final resp = await http.get(url);
-  //   final Map<String, dynamic> decodedData = json.decode(resp.body);
-  //   decodedData.forEach((id, user) { 
-  //     final Usuario usuario = Usuario.fromJson(user);
-  //     usuario.idFire = id;
-  //     usuarios.add(usuario);
-  //   });
-  //   print(usuarios[0].idFire);
-  // }
 }

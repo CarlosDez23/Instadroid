@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:instadroid/src/pages/home_page.dart';
 import 'package:instadroid/src/pages/login_page.dart';
 import 'package:instadroid/src/pages/registro_page.dart';
+import 'package:instadroid/src/pages/upload_photo_page.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
 import 'package:instadroid/src/providers/user_preferences.dart';
  
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
       routes:{
         'login'      :  (BuildContext context) => LoginPage(),
         'registro'   :  (BuildContext context) => RegistroPage(),
+        'home'       :  (BuildContext context) => HomePage(),
+        'foto'       :  (BuildContext context) => UploadPhotoPage(),
       },
       //Tema de la aplicación
       theme: myTheme,
