@@ -11,7 +11,6 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new UserPreferences();
   await prefs.initPrefs();
-  print('Token guardado ${prefs.token}');
   runApp(MyApp());
 } 
  
