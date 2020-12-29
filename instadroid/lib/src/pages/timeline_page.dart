@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:instadroid/src/models/publicacion_model.dart';
 import 'package:instadroid/src/models/usuario_model.dart';
 import 'package:instadroid/src/providers/publicaciones_provider.dart';
+import 'package:instadroid/src/providers/user_preferences.dart';
 import 'package:instadroid/src/providers/user_provider.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
+import 'package:instadroid/src/utils/utils.dart' as utils;
 
 class TimelinePage extends StatelessWidget {
   @override
@@ -150,12 +152,16 @@ class _PublicacionActions extends StatefulWidget {
   const _PublicacionActions({@required this.publicacion});
 
   @override
-  __PublicacionActionsState createState() => __PublicacionActionsState();
+  __PublicacionActionsState createState() => __PublicacionActionsState(this.publicacion);
 }
 
 class __PublicacionActionsState extends State<_PublicacionActions> {
 
   bool _isLiked;
+  final _prefs = UserPreferences();
+  final Publicacion publicacion;
+
+  __PublicacionActionsState(this.publicacion);
 
   @override
   void initState() {
@@ -168,6 +174,17 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
       children: [
         _createLikeButton(),
         _createPositionButton(),
+        Expanded(
+          child: Container(),
+        ),
+        //Si la publicación la hemos subido el usuario logueado, se muestran las opciones de
+        //editar y eliminar
+        (_prefs.idUsuarioLogueado == publicacion.idUsuario)
+          ? _createEditButton()
+          : Container(),
+        (_prefs.idUsuarioLogueado == publicacion.idUsuario)
+          ? _createDeleteButton(publicacion.idPublicacion, context)
+          : Container(),
       ],   
     );
   }
@@ -194,6 +211,48 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
       icon: Icon(Icons.location_pin, color: Colors.grey),
       onPressed: () {
         //Navegación a la pantalla de localización
+      },
+      iconSize: 30,
+    );
+  }
+
+  _createDeleteButton(String idPublicacion, BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.delete, color: Colors.grey),
+      onPressed: () {
+        utils.showAlert(
+          context,
+          [
+            FlatButton(
+              child: Text('Aceptar'),
+              onPressed: () async{
+                //Eliminamos la publicación
+                final publicacionesProvider = PublicacionesProvider();
+                bool publiEliminada = await publicacionesProvider.borrarPublicacion(idPublicacion);
+                if(publiEliminada){
+                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, 'home');
+                }
+              } 
+            ),
+            FlatButton(
+              child: Text('Cancelar'),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ], 
+          'Borrar publicación', 
+          '¿Seguro/a de borrar la publicación?',
+        );
+      },
+      iconSize: 30,
+    );
+  }
+
+  _createEditButton() {
+    return IconButton(
+      icon: Icon(Icons.edit, color: Colors.grey),
+      onPressed: (){
+        //Eliminamos la publicación
       },
       iconSize: 30,
     );

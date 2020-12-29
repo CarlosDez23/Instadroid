@@ -11,7 +11,7 @@ bool isAEmail(String email){
 void showAlert(BuildContext context, List<Widget> actions, String titulo, String contenido){
   showDialog(
     context: context,
-    barrierDismissible: false,
+    barrierDismissible: true,
     builder: (context){
       return AlertDialog(
         shape: RoundedRectangleBorder(

@@ -25,4 +25,13 @@ class PublicacionesProvider{
     });
     return list;
   }
+
+  //Borramos una publicación de Firebase
+
+  Future<bool> borrarPublicacion (String idPublicacion) async {
+    final url = '$_baseUrl/publicaciones/$idPublicacion.json';
+    await http.delete(url);
+    return true;
+  }
+
 }
