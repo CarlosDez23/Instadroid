@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   ? CircularProgressIndicator(backgroundColor: myTheme.primaryColor)
                   : Container(),
                   SizedBox(height: 150),
-                  _loginButton(),
+                  _loginButton(context),
                   SizedBox(height: 20),
                   _registerButton(context),    
                 ],
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _loginButton(){
+  Widget _loginButton(BuildContext context){
     return Container(
       width: 300,
       child: RaisedButton(
@@ -159,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
         elevation: 0.0, 
         color: myTheme.buttonColor,
         textColor: Colors.white,
-        onPressed: () => _submit(),
+        onPressed: () => _submit(context),
       ),
     );
   }
@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _submit() async {
+  void _submit(BuildContext context) async {
     final loginProvider = LoginAuthProvider();
     if(!formKey.currentState.validate()){
       return;
@@ -197,9 +197,21 @@ class _LoginPageState extends State<LoginPage> {
       _cargando = !_cargando;
     });
     if(isLogged){
-      print('Usuario logueado');
+      Navigator.pushReplacementNamed(context, 'home');
     }else{
-      print('Usuario no logueado');
+      utils.showAlert(
+        context,
+        [
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            } 
+          )
+        ], 
+        'Login', 
+        'Usuario no encontrado, por favor crea una cuenta',
+      );
     }    //Realizar login en firebase
   }
 }

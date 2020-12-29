@@ -17,7 +17,6 @@ class LoginAuthProvider {
   //Damos de alta un usuario en Firebase
   Future<bool> createUserFirebase(Usuario usuario) async {
     final url = '$_baseUrl$_registerServiceToken$_apiKey';
-    print(url);
     final userData = {
       'email'             : usuario.email,
       'password'          : usuario.password,
@@ -26,10 +25,9 @@ class LoginAuthProvider {
     return await _handleResponse(url, json.encode(userData));
   }
 
-  //Login contrqa firebase
+  //Login contra firebase
   Future<bool> loginFirebase(Usuario usuario) async {
     final url = '$_baseUrl$_loginServiceToken$_apiKey';
-    print(url);
     final userData = {
       'email'             : usuario.email,
       'password'          : usuario.password,
@@ -38,11 +36,11 @@ class LoginAuthProvider {
     return await _handleResponse(url, json.encode(userData));
   }
 
+  //La petición http y su procesamiento
   Future<bool> _handleResponse(String url, String requestBody) async{
     final resp = await http.post(url, body: requestBody);
     Map<String, dynamic> decodedResponse = json.decode(resp.body);
     //Guardamos el token en las prefrencias de usuario
-    print('Token ${decodedResponse['idToken']}');
     userPreferences.token = decodedResponse['idToken'];
     return decodedResponse.containsKey('idToken');
   }
