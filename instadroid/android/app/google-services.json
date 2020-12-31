@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33479494233",
+    "firebase_url": "https://instadroid-45787-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "instadroid-45787",
+    "storage_bucket": "instadroid-45787.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33479494233:android:531bac767390bc68c5ff48",
+        "android_client_info": {
+          "package_name": "com.example.instadroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33479494233-kft671qit7lms6irudmjnd7c1phjqt8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx8jllEJMjV8JhpVN6s-Rln49JvYBXgwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33479494233-kft671qit7lms6irudmjnd7c1phjqt8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

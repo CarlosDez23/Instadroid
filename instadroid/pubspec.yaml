@@ -33,6 +33,9 @@ dependencies:
   shared_preferences: ^0.5.12+4
   provider: ^4.3.2+3
   image_picker: ^0.6.7+17
+  firebase_core: ^0.5.3
+  firebase_storage: ^5.2.0
+  permission_handler: ^5.0.1+1
 
 dev_dependencies:
   flutter_test:
