@@ -26,8 +26,17 @@ class PublicacionesProvider{
     return list;
   }
 
-  //Borramos una publicación de Firebase
+  //Insertamos publicación
+  Future<bool> insertarPublicacion(Publicacion publicacion) async {
 
+    final url = '$_baseUrl/publicaciones.json'; 
+    final resp = await http.post(url, body: publicacionToJson(publicacion));
+    final decodedResp = json.decode(resp.body);
+    print(decodedResp);
+    return true;
+  }
+
+  //Borramos una publicación de Firebase
   Future<bool> borrarPublicacion (String idPublicacion) async {
     final url = '$_baseUrl/publicaciones/$idPublicacion.json';
     await http.delete(url);
