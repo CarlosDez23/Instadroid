@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 Publicacion publicacionFromJson(String str) => Publicacion.fromJson(json.decode(str));
 
 String publicacionToJson(Publicacion data) => json.encode(data.toJson());
