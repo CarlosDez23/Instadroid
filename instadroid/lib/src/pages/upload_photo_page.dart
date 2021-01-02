@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:instadroid/src/models/publicacion_model.dart';
+import 'package:instadroid/src/providers/localizacion_provider.dart';
 import 'package:instadroid/src/providers/publicaciones_provider.dart';
 import 'package:instadroid/src/providers/upload_photo_provider.dart' as StorageUtil;
 import 'package:instadroid/src/providers/user_preferences.dart';
@@ -246,9 +248,11 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
     publicacion.idUsuario = prefs.idUsuarioLogueado;
     //Establecemos los me gusta a 0
     publicacion.meGustas = 0;
-    //De momento inventamos latitud y longitud
-    publicacion.latitud  = 34234.23423;
-    publicacion.longitud = 334134.1234;
+    //Obtenemos nuestra localización actual y la añadimos
+    final locationProvider = LocationProvider();
+    Position position = await locationProvider.getCurrentLocation();
+    publicacion.latitud  = position.latitude;
+    publicacion.longitud = position.longitude;
     //Con todos los datos subimos la foto a realtime database de firebase
     bool publiSubida = await publicacionesProvider.insertarPublicacion(publicacion);
     setState(() {

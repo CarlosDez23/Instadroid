@@ -173,7 +173,7 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
     return Row(
       children: [
         _createLikeButton(),
-        _createPositionButton(),
+        _createPositionButton(context),
         Expanded(
           child: Container(),
         ),
@@ -206,11 +206,12 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
     );
   }
 
-  Widget _createPositionButton() {
+  Widget _createPositionButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.location_pin, color: Colors.grey),
       onPressed: () {
         //Navegación a la pantalla de localización
+        Navigator.pushNamed(context, 'localizacion', arguments: publicacion);
       },
       iconSize: 30,
     );
@@ -252,7 +253,7 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
     return IconButton(
       icon: Icon(Icons.edit, color: Colors.grey),
       onPressed: (){
-        //Eliminamos la publicación
+        //Editamos la publicación
       },
       iconSize: 30,
     );
