@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instadroid/src/pages/home_page.dart';
+import 'package:instadroid/src/pages/localizacion_fotos_page.dart';
 import 'package:instadroid/src/pages/login_page.dart';
 import 'package:instadroid/src/pages/publicacion_localizacion_page.dart';
 import 'package:instadroid/src/pages/registro_page.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         'home'         :  (BuildContext context) => HomePage(),
         'foto'         :  (BuildContext context) => UploadPhotoPage(),
         'localizacion' :  (BuildContext context) => PhotoLocationPage(),
+        'mapa'         :  (BuildContext context) => LocalizacionFotosPage(),
       },
       //Tema de la aplicación
       theme: myTheme,

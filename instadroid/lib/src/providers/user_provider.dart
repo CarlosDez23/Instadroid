@@ -11,20 +11,22 @@ class UserProvider {
 
   //Insertamos los datos del usuario en realtime database de firebase
   Future<bool> agregarUsuario (Usuario usuario) async {
-    final url = '$_mainUrl/usuarios.json';
+    final url = '$_mainUrl/usuarios.json?auth=${_prefs.token}';
     final resp = await http.post(url, body: usuarioToJson(usuario));
     final Map<String, dynamic> decodedData = json.decode(resp.body);
     //Si lo que nos devuelve contiene name ese es el id que firebase le ha dado 
     if(decodedData.containsKey('name')){
       //Lo almacenamos en las shared prefs
       _prefs.idUsuarioLogueado = decodedData['name'];
+      //Borramos los me gusta del usuario anterior
+      _prefs.publicacionesGustadasGuardadas = false;
     }
     return decodedData.containsKey('name'); 
   }
 
   //Buscamos un usuario por su id
   Future<Usuario> findUserById(String id) async {
-    final url = '$_mainUrl/usuarios/$id.json';
+    final url = '$_mainUrl/usuarios/$id.json?auth=${_prefs.token}';
     final resp = await http.get(url);
     return usuarioFromJson(resp.body);
   }

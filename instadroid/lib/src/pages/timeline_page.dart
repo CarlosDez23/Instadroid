@@ -89,11 +89,18 @@ class _PublicacionItemHeader extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal:10.0, vertical: 10.0),
             child: Row(
               children: [
-                CircleAvatar(
-                  child: Text('CG'),
-                  backgroundColor: myTheme.buttonColor,
-                  foregroundColor: Colors.white,
-                  maxRadius: 15.0,
+                Container(
+                  child: (snapshot.data.fotoUrl == '')
+                    ? CircleAvatar(
+                        backgroundColor: myTheme.buttonColor,
+                        foregroundColor: Colors.white,
+                        maxRadius: 15.0,
+                        child: Text('ID'),
+                      )
+                    : CircleAvatar(
+                        backgroundImage: NetworkImage(snapshot.data.fotoUrl),
+                        maxRadius: 15.0,
+                      ),
                 ),
                 SizedBox(width: 10.0),
                 Text(
@@ -180,7 +187,7 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
         //Si la publicación la hemos subido el usuario logueado, se muestran las opciones de
         //editar y eliminar
         (_prefs.idUsuarioLogueado == publicacion.idUsuario)
-          ? _createEditButton()
+          ? _createEditButton(context)
           : Container(),
         (_prefs.idUsuarioLogueado == publicacion.idUsuario)
           ? _createDeleteButton(publicacion.idPublicacion, context)
@@ -190,6 +197,14 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
   }
 
   Widget _createLikeButton() {
+    final userPreferences = UserPreferences();
+    final List<String> meGusta = userPreferences.publicacionesMeGustaGuardadas;
+
+    if(meGusta.contains(publicacion.idPublicacion)){
+      setState(() {
+        _isLiked = true;
+      });
+    }
     return IconButton(
       icon: (_isLiked) 
         ? Icon(Icons.favorite)
@@ -198,6 +213,12 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
         setState(() {
           _isLiked = !_isLiked;
         });
+        if(_isLiked){
+          userPreferences.publicacionesGustadas.add(publicacion.idPublicacion);
+          userPreferences.publicacionesGustadasGuardadas = true;
+        }else{
+          userPreferences.publicacionesGustadas.remove(publicacion.idPublicacion);
+        }
       },
       color: (_isLiked)
         ? Colors.red
@@ -217,7 +238,7 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
     );
   }
 
-  _createDeleteButton(String idPublicacion, BuildContext context) {
+  Widget _createDeleteButton(String idPublicacion, BuildContext context) {
     return IconButton(
       icon: Icon(Icons.delete, color: Colors.grey),
       onPressed: () {
@@ -249,11 +270,12 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
     );
   }
 
-  _createEditButton() {
+  Widget _createEditButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.edit, color: Colors.grey),
       onPressed: (){
-        //Editamos la publicación
+        //Editamos la publicación, vamos a la pantalla de subir foto pero en modo edición
+        Navigator.pushNamed(context, 'foto', arguments: publicacion);
       },
       iconSize: 30,
     );
