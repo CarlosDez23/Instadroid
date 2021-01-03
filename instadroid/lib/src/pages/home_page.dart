@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:instadroid/src/models/publicacion_model.dart';
 import 'package:instadroid/src/pages/profile_page.dart';
 import 'package:instadroid/src/pages/timeline_page.dart';
+import 'package:instadroid/src/providers/publicaciones_provider.dart';
 import 'package:instadroid/src/theme/mytheme.dart';
 import 'package:instadroid/src/widgets/app_title.dart';
 import 'package:provider/provider.dart';
@@ -13,14 +15,24 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Transform(
-            transform:  Matrix4.translationValues(-100.0, 0.0, 0.0),
+            transform:  Matrix4.translationValues(-80.0, 0.0, 0.0),
             child: AppTitle(
               color: Colors.black,
-              size: 35.0
+              size: 35.0,
             ),
           ),
           backgroundColor: Colors.white,
           centerTitle: false,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.map, color: Colors.black),
+              onPressed: () async {
+                final publicacionesProvider = PublicacionesProvider();
+                final List<Publicacion> listaPublis = await publicacionesProvider.listarPublicaciones();
+                Navigator.pushNamed(context, 'mapa', arguments: listaPublis);
+              },
+            ),
+          ],
         ),
         body: _Pages(),
         floatingActionButton: FloatingActionButton( 

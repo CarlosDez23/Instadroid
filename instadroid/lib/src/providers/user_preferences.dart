@@ -17,8 +17,12 @@ class UserPreferences{
 
   SharedPreferences _prefs;
 
+  //Lista de publicaciones gustadas
+  List<String> _publisMeGusta;
+
   initPrefs() async {
     this._prefs = await SharedPreferences.getInstance();
+    this._publisMeGusta = List();
   }
 
   // Get y sets para los datos a almacenar
@@ -38,4 +42,19 @@ class UserPreferences{
   set idUsuarioLogueado(String id){
     _prefs.setString('id', id);
   }
+
+  List<String> get publicacionesGustadas => this._publisMeGusta;
+
+  set publicacionesGustadasGuardadas(bool setear){
+    if(setear){
+      List<String> gustadas = _prefs.getStringList('megustas') ?? List<String>();
+      gustadas.addAll(this._publisMeGusta);
+      _prefs.setStringList('megustas', gustadas);
+    }else{
+      //Cambiamos de usuario por lo que borramos sus me gusta de los shared prefs
+      _prefs.setStringList('megustas', new List<String>());
+    }
+  }
+
+  List<String> get publicacionesMeGustaGuardadas => _prefs.getStringList('megustas') ?? List<String>();
 }

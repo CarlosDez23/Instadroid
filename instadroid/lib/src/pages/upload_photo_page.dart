@@ -28,6 +28,9 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
   //Imagen de la cámara o de la galería
   File imagen;
 
+  //Para saber si estamos editando o creando
+  bool editando = false;
+
   final formKey = GlobalKey<FormState>();
   @override
   void initState() { 
@@ -37,10 +40,20 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    //Si recibimos una publicación como argumento entonces estamos editando una publicación existente, no creándolo
+    final Publicacion publicacionArgs = ModalRoute.of(context).settings.arguments;
+    //Si no es nula la publicación mandada desde la pantalla anterior, nuestra publicación global será esa publicación
+    //porque la estamos editando
+    if(publicacionArgs != null){
+      publicacion = publicacionArgs;
+      editando = true;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Transform(
-          transform:  Matrix4.translationValues(-100.0, 0.0, 0.0),
+          transform:  Matrix4.translationValues(-110.0, 0.0, 0.0),
           child: AppTitle(
             color: Colors.black,
             size: 35.0
@@ -48,6 +61,10 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
         ),
         backgroundColor: Colors.white,
         centerTitle: false,
+        leading: IconButton( 
+          icon: Icon(Icons.chevron_left, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -96,16 +113,30 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
   }
 
   Widget _createPhotoLayout(BuildContext context) {
+    //Consultamos el tamaño de la pantalla
     final screenSize = MediaQuery.of(context).size;
-    if(imagen != null){
+    if(publicacion.foto != null){
+      //Mostramos foto del producto que nos viene del timeline
       return Container(
-          width: double.infinity,
-          height: screenSize.height * 0.5,
-          child: Image.file(
-            imagen,
-            fit: BoxFit.cover,
-          ),
-        );
+        //Ocupa todo el ancho disponible
+        width: double.infinity,
+        //Será la mitad de la altura de la pantalla
+        height: screenSize.height * 0.5,
+        child: FadeInImage(
+          image: NetworkImage(publicacion.foto),
+          placeholder: AssetImage('assets/img/loading.gif'),
+          fit: BoxFit.cover,
+        ),
+      );
+    }else if(imagen != null){
+      return Container(
+        width: double.infinity,
+        height: screenSize.height * 0.5,
+        child: Image.file(
+          imagen,
+          fit: BoxFit.cover,
+        ),
+      );
     }else{
       return Container(
         width: double.infinity,
@@ -125,6 +156,8 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
       ),
       padding: EdgeInsets.symmetric(horizontal: 35, vertical: 6),
       child: TextFormField(
+        //Valor inicial si la publicación ya existe
+        initialValue: publicacion.titulo,
         minLines: 3,
         maxLines: 10,
         decoration: InputDecoration(
@@ -163,7 +196,9 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
         child: RaisedButton(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal:80.0, vertical: 15.0),
-            child: Text('Subir foto'),
+            child: (editando)
+              ? Text('Editar foto')
+              : Text('Subir foto'),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
@@ -210,6 +245,10 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
     imagen = await ImagePicker.pickImage(
       source: origen
     );
+    if(imagen != null){
+      //Quitamos la imagen anterior si la hubiera
+      publicacion.foto = null;
+    }
     setState(() {});
   }
 
@@ -218,7 +257,7 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
     if(!formKey.currentState.validate()){
       return;
     }
-    if(imagen == null){
+    if(imagen == null && !editando){
       utils.showAlert(
         context, 
           [
@@ -242,7 +281,12 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
     setState(() {
       _cargando = true;
     });
-    publicacion.foto = await StorageUtil.uploadImageToFirebase(imagen, publicacion.titulo);
+    //Solo vamos a subir la imagen cuando haya un fichero cargado en la imagen
+    //Si estamos editando y no queremos editar la imagen no tendríamos que estaqr
+    //obligados a subirla
+    if(imagen != null){
+      publicacion.foto = await StorageUtil.uploadImageToFirebase(imagen, publicacion.titulo);
+    }
 
     //Le añadimos la id del usuario que la está subiendo que está en shared prefs
     publicacion.idUsuario = prefs.idUsuarioLogueado;
@@ -253,8 +297,13 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
     Position position = await locationProvider.getCurrentLocation();
     publicacion.latitud  = position.latitude;
     publicacion.longitud = position.longitude;
-    //Con todos los datos subimos la foto a realtime database de firebase
-    bool publiSubida = await publicacionesProvider.insertarPublicacion(publicacion);
+    //Si estamos editando editaremos la publicación, si no, crearemos una nueva
+    //Con todos los datos subimos/editamos la foto a realtime database de firebase
+    if(editando){
+      bool publiEditada = await publicacionesProvider.editarPublicacion(publicacion);
+    }else{
+      bool publiSubida = await publicacionesProvider.insertarPublicacion(publicacion);
+    }
     setState(() {
       _cargando = false;
     });
