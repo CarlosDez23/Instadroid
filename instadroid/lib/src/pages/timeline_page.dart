@@ -167,13 +167,20 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
   bool _isLiked;
   final _prefs = UserPreferences();
   final Publicacion publicacion;
-
+ 
   __PublicacionActionsState(this.publicacion);
 
   @override
   void initState() {
-    super.initState();
-    _isLiked = false;
+    super.initState(); 
+    final List<String> meGusta = _prefs.publicacionesMeGustaGuardadas;
+    if(meGusta.contains(publicacion.idPublicacion)){
+      setState(() {
+        _isLiked = true;
+      });
+    }else{
+      _isLiked = false;
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -197,14 +204,6 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
   }
 
   Widget _createLikeButton() {
-    final userPreferences = UserPreferences();
-    final List<String> meGusta = userPreferences.publicacionesMeGustaGuardadas;
-
-    if(meGusta.contains(publicacion.idPublicacion)){
-      setState(() {
-        _isLiked = true;
-      });
-    }
     return IconButton(
       icon: (_isLiked) 
         ? Icon(Icons.favorite)
@@ -214,10 +213,11 @@ class __PublicacionActionsState extends State<_PublicacionActions> {
           _isLiked = !_isLiked;
         });
         if(_isLiked){
-          userPreferences.publicacionesGustadas.add(publicacion.idPublicacion);
-          userPreferences.publicacionesGustadasGuardadas = true;
+          _prefs.publicacionesGustadas.add(publicacion.idPublicacion);
+          _prefs.publicacionesGustadasGuardadas = true;
         }else{
-          userPreferences.publicacionesGustadas.remove(publicacion.idPublicacion);
+          _prefs.publicacionesGustadas.remove(publicacion.idPublicacion);
+          _prefs.eliminarDePublisGuardadadas(publicacion.idPublicacion);
         }
       },
       color: (_isLiked)

@@ -56,5 +56,11 @@ class UserPreferences{
     }
   }
 
+  eliminarDePublisGuardadadas(String id){
+    List<String> gustadas = _prefs.getStringList('megustas') ?? List<String>();
+    gustadas.remove(id);
+    _prefs.setStringList('megustas', gustadas);
+  }
+
   List<String> get publicacionesMeGustaGuardadas => _prefs.getStringList('megustas') ?? List<String>();
 }
