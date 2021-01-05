@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="./img/loalizaciontodas.JPG">
+        <img class="card-img-top" src="./img/localizaciontodas.JPG">
         <div class="card-body">
           <p class="card-text">Pulsa en el icono del mapa de la barra superior del timeline para ver esta pantalla
           con la localización de todas las publicaciones</p>
