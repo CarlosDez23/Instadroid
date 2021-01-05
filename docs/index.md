@@ -11,6 +11,7 @@
     <style>
         .tarjetas{
             display: inline-block;
+            height: 30rem;
         }
         .contenedor{
             text-align: center;
@@ -37,14 +38,14 @@
         <div class="card tarjetas" style="width: 18rem; height:30rem;">
             <img class="card-img-top" src="./img/registro.JPG">
             <div class="card-body">
-              <p class="card-text">Esta es la pantalla de login, rellena correctamente tus credenciales y crea una cuenta</p>
+              <p class="card-text">Esta es la pantalla de registro, rellena correctamente tus credenciales y crea una cuenta</p>
             </div>
         </div>
         <div class="card tarjetas" style="width: 18rem; height:30rem;">
             <img class="card-img-top" src="./img/timeline.JPG">
             <div class="card-body">
               <p class="card-text">Este es el timeline de Instadroid, aquí podras ver las fotos que suben los usuarios. Además
-              con el menú inferior podrás acceder a nuevas funcionalides pronto disponibles. Para subir una foto pulsa el icono     de la cámara en el menú infeiror</p>
+              con el menú inferior podrás acceder a nuevas funcionalides pronto disponibles. Para subir una foto pulsa el icono     de la cámara en el menú inferior</p>
             </div>
         </div>
         <div class="card tarjetas" style="width: 18rem; height:30rem;">
