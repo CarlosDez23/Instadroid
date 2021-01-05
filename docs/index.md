@@ -27,59 +27,59 @@
             <p>Guía de los aspectos más relevantes de la aplicación</p>
         </div>
     <div class="contenedor">
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/login.JPG">
             <div class="card-body">
               <p class="card-text">Esta es la pantalla de login, aquí podrás entrar a Instadroid si ya tienes una cuenta
               o pulsar en registro para crear una nueva.</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/registro.JPG">
             <div class="card-body">
               <p class="card-text">Esta es la pantalla de registro, rellena correctamente tus credenciales y crea una cuenta</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/timeline.JPG">
             <div class="card-body">
               <p class="card-text">Este es el timeline de Instadroid, aquí podras ver las fotos que suben los usuarios. Además
               con el menú inferior podrás acceder a nuevas funcionalides pronto disponibles. Para subir una foto pulsa el icono     de la cámara en el menú inferior</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/subirfoto.JPG">
             <div class="card-body">
               <p class="card-text">Esta es la pantalla para subir una foto, pulsa al botón de arriba a la derecha y elige si    echar la foto con la cámara o sacarla desde la galería. A continuación, dale un título y pulsa en subir foto</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/publisubida.JPG">
             <div class="card-body">
               <p class="card-text">Este es el aspecto que muestra tu publicación recién subida. Verás las opciones de borrar y
               editar en la parte inferior derecha de la foto.Pulsa en el icono de la papelera para borrar la publicación</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/editarfoto.JPG">
             <div class="card-body">
               <p class="card-text">Esta es la pantalla para editar una foto. Funciona exactamente igual que la pantalla para    subirla!</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/publicacionlike.JPG">
             <div class="card-body">
               <p class="card-text">Pulsa en el icono del corazón de una publicación para darle like</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/localizacionfoto.JPG">
             <div class="card-body">
               <p class="card-text">Pulsa en el icono de la localización para acceder a esta pantalla y ver dónde
               se realizó la publicación</p>
             </div>
         </div>
-        <div class="card tarjetas" style="width: 18rem; height:30rem;">
+        <div class="card tarjetas" style="width: 18rem;">
             <img class="card-img-top" src="./img/localizaciontodas.JPG">
             <div class="card-body">
               <p class="card-text">Pulsa en el icono del mapa de la barra superior del timeline para ver esta pantalla
