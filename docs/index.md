@@ -17,13 +17,11 @@
         <hr class="my-4">
         <p>Guía de los aspectos más relevantes de la aplicación</p>
     </div>
-    <div class="card mb-3">
-        <img class="card-img-top" src="./img/login.png" alt="login" width="200" height="300">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="./img/login.png" alt="login" width="150" height="200">
         <div class="card-body">
-          <h5 class="card-title">Pantalla de login</h5>
-          <p class="card-text">En esta pantalla podrás entrar a Instadroid si ya tienes una cuenta pulsando en login.
-          Si no la tienes, deberás pulsar en registro para registrarte</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <p class="card-text">Esta es la pantalla de login, aquí podrás entrar a Instadroid si ya tienes una cuenta
+          o pulsar en registro para crear una nueva.</p>
         </div>
     </div>
 
