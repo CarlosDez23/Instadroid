@@ -11,7 +11,6 @@
     <style>
         .tarjetas{
             display: inline-block;
-            height: 30rem;
         }
         .contenedor{
             text-align: center;
