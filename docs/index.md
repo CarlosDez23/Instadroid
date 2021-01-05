@@ -11,6 +11,7 @@
     <style>
         .tarjetas{
             display: inline-block;
+            margin-bottom: 10px;
         }
         .contenedor{
             text-align: center;
