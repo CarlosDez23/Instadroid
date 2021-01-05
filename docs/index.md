@@ -11,11 +11,10 @@
     <style>
         .tarjetas{
             display: inline-block;
-            padding: 10px;
-            marging: 10px;
         }
         .contenedor{
             text-align: center;
+            padding: 10px;
         }
     </style>
   </head>
