@@ -26,7 +26,7 @@
             <p>Guía de los aspectos más relevantes de la aplicación</p>
         </div>
     <div class="contenedor">
-        <div class="card tarjetas" style="width: 18rem;">
+        <div class="card tarjetas" style="width: 18rem; height:50rem;">
             <img class="card-img-top" src="./img/login.JPG">
             <div class="card-body">
               <p class="card-text">Esta es la pantalla de login, aquí podrás entrar a Instadroid si ya tienes una cuenta
