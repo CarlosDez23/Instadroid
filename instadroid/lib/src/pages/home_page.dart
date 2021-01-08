@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instadroid/src/models/publicacion_model.dart';
+import 'package:instadroid/src/pages/busqueda_page.dart';
+import 'package:instadroid/src/pages/chat_page.dart';
 import 'package:instadroid/src/pages/profile_page.dart';
 import 'package:instadroid/src/pages/timeline_page.dart';
 import 'package:instadroid/src/providers/publicaciones_provider.dart';
@@ -61,6 +63,8 @@ class _Pages extends StatelessWidget {
       children: [
         TimelinePage(),
         ProfilePage(),
+        BusquedaPage(),
+        ChatPage(),
       ],
     );
   }
