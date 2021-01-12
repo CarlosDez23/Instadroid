@@ -9,12 +9,22 @@
 - 💬 Chatea con tus amigos
 - 🔥 Y mucho más...
 
-## Encuéntrame en las redes 🌍
+## Contenido 📕
 
-[<img align="left" alt="codeSTACKr | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
-[<img align="left" alt="codeSTACKr | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
-[<img align="left" alt="codeSTACKr | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />][instagram]
+🤓 Wiki del proyecto: [wiki]
 <br />
+💪🏼 Manual de usuario: [guia]
+<br />
+👨‍💻 Código fuente: [source] 
+
+
+## Workflow del proyecto
+
+Git tree del proyecto utilizando GitFlow:
+
+<br />
+<img align="left" alt="gittree" width="1000px" src="https://github.com/CarlosDez23/Instadroid/blob/master/documentacion/graficos/arbolgit.JPG" />
+
 
 ## Herramientas y tecnologías utilizadas 🔨
 
@@ -24,14 +34,12 @@
 <br />
 <br />
 
-## Contenido 📕
+## Encuéntrame en las redes 🌍
 
-🤓 Wiki del proyecto: [wiki]
+[<img align="left" alt="codeSTACKr | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
+[<img align="left" alt="codeSTACKr | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
+[<img align="left" alt="codeSTACKr | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />][instagram]
 <br />
-💪🏼 Manual de usuario: [guia]
-<br />
-👨‍💻 Código fuente: [source] 
-
 
 <details>
   <summary>:zap: GitHub Stats</summary>
