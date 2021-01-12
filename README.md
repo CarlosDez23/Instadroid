@@ -18,13 +18,13 @@
 👨‍💻 Código fuente: [source] 
 
 
-## Workflow del proyecto
+## Workflow del proyecto 🕑
 
 Git tree del proyecto utilizando GitFlow:
 
 <br />
 <img align="left" alt="gittree" width="1000px" src="https://github.com/CarlosDez23/Instadroid/blob/master/documentacion/graficos/arbolgit.JPG" />
-
+<br />
 
 ## Herramientas y tecnologías utilizadas 🔨
 
