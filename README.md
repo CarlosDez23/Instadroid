@@ -16,6 +16,8 @@
 💪🏼 Manual de usuario: [guia]
 <br />
 👨‍💻 Código fuente: [source] 
+<br />
+📹 Vídeo explicativo: [video]
 
 
 ## Workflow del proyecto 🕑
@@ -56,3 +58,4 @@ Git tree del proyecto utilizando GitFlow:
 [wiki]: https://github.com/CarlosDez23/Instadroid/wiki
 [guia]: https://carlosdez23.github.io/Instadroid/
 [source]: https://github.com/CarlosDez23/Instadroid/tree/master/instadroid
+[video]: https://youtu.be/-6E2ArXVYKM
