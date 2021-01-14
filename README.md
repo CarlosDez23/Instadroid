@@ -58,4 +58,4 @@ Git tree del proyecto utilizando GitFlow:
 [wiki]: https://github.com/CarlosDez23/Instadroid/wiki
 [guia]: https://carlosdez23.github.io/Instadroid/
 [source]: https://github.com/CarlosDez23/Instadroid/tree/master/instadroid
-[video]: https://youtu.be/-6E2ArXVYKM
+[video]: https://youtu.be/oWyE874w12M
